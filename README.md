@@ -1,2 +1,2 @@
-# chthun-game
-Chthun is an arcade platform game, and an exercise in a natural language processing and computational linguistics.
+# outer-game
+Outer is a puzzle-platformer game, and an exercise in the arcade library, game development, and tessallation.
