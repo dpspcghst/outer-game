@@ -10,6 +10,17 @@ Game sounds and tile maps by author
 """
 
 import arcade
+import pathlib
+
+# Game constants
+
+# Window dimensions
+screen_width = 1000
+screen_height = 650
+screen_title = "Outer"
+
+# Assets path
+assets_path = pathlib.Path(__file__).resolve().parent.parent / "assets"
 
 
 class Platformer(arcade.window):
@@ -18,12 +29,45 @@ class Platformer(arcade.window):
     update game state, process user input, and draw items on the screen.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         This function initializes the game object.
         """
 
-        pass
+        super().__init__(screen_width, screen_height, screen_title)
+
+        # These lists will hold different sets of sprites.
+        self.background = None
+        self.coins = None
+        self.enemies = None
+        self.goals = None
+        self.ladders = None
+        self.walls = None
+
+        # One sprite for the player, no more is needed.
+        self.player = None
+
+        # We need a physics engine as well.
+        self.physics_engine = None
+
+        # Someplace to keep score.
+        self.score = 0
+
+        # Which level is the player on?
+        self.level = 1
+
+        # Load up Outer's sounds here.
+        self.coin_sound = arcade.load_sound(
+            str(assets_path / "sounds" / "coin.wav")
+        )
+
+        self.jump_sound = arcade.load_sound(
+            str(assets_path / "sounds" / "jump.wav")
+        )
+
+        self.victory_sound = arcade.load_sound(
+            str(assets_path / "sounds" / "victory.wav")
+        )
 
     def setup(self):
         """
@@ -75,3 +119,4 @@ if __name__ == "__main__":
     window = Platformer()
     window.setup()
     arcade.run()
+
